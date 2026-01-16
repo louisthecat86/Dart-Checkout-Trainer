@@ -12,16 +12,16 @@ jobs:
         with:
           node-version: '22'
 
-      - name: set up JDK 17
+      - name: set up JDK 21  # Hier von 17 auf 21 geändert
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Install, Build Web and Sync Capacitor
         run: |
           npm install
-          npm run build  # Erstellt den fehlenden ./dist Ordner
+          npm run build
           npx cap sync android
 
       - name: Build APK
