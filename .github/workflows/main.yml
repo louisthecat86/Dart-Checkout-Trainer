@@ -1,5 +1,5 @@
 name: Build APK
-on: [push, workflow_dispatch] # Baut bei jedem Speichern oder manuell
+on: [push, workflow_dispatch]
 
 jobs:
   build:
@@ -12,6 +12,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Install Dependencies and Sync Capacitor
+        run: |
+          npm install
+          npx cap sync android
 
       - name: Build APK
         run: |
