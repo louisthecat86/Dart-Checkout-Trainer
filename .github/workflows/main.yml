@@ -7,7 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Schritt 1: Node.js 22 installieren (WICHTIG!)
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
@@ -19,9 +18,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install Dependencies and Sync Capacitor
+      - name: Install, Build Web and Sync Capacitor
         run: |
           npm install
+          npm run build  # Erstellt den fehlenden ./dist Ordner
           npx cap sync android
 
       - name: Build APK
